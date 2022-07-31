@@ -1,0 +1,12 @@
+#real-turtle {
+    border: solid 2px black;
+}
+
+.text-error {
+    background-color: red;
+    border: solid 2px black;
+}
+
+.bg-editor {
+    background-color: #E9E9E9;
+}
