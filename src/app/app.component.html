@@ -17,9 +17,11 @@
     <div class="border border-secondary bg-editor p-3">
       <div class="d-flex justify-content-between p-0 mb-2">
         <span>Editor</span>
-        <span class="material-icons">close</span>
+        <!-- <span class="material-icons">close</span> -->
       </div>
-      <textarea class="p-2 flex-fill" name="text" #someInput cols="25" rows="30"></textarea>
+      <!-- <textarea class="p-2 flex-fill" name="text" #someInput cols="25" rows="30"></textarea> -->
+      <app-textarea-highlight (messageEvent)="receiveMessage($event)" [highlightTexts]="highlightTexts"></app-textarea-highlight>
+
     </div>
     <div class="border border-secondary p-5 flex-fill text-center">
       <div class="d-flex mb-2">
@@ -102,7 +104,21 @@
   </div>
 
   <!-- <button (click)="check()">click</button> -->
-  <div *ngIf="Error.length" class="text-error" >{{ Error }}</div>
+  <div *ngIf="Error.length" class="alert alert-danger text-center" role="alert" >{{ Error }}</div>
+  <div class="container-fuild bg-editor">
+    <footer class="text-center text-lg-start d-flex justify-content-around">
+      <!-- Copyright -->
+      <div class="text-center text-black p-3">
+        © 2020 Copyright:
+        <a class="text-black" href="https://github.com/jimi-1337/">jimi_1337</a>
+      </div>
+      <div class="text-center text-black p-3">
+        Powered by:
+        <a class="text-black" href="https://github.com/jimi-1337/">jimi_1337</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </div>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

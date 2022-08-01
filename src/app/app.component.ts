@@ -33,7 +33,21 @@ interface input {
 })
 export class AppComponent implements  AfterViewInit {
   title = 'turtolisme';
-  highlightTexts = ["text", "demo", "div"];
+  textValue:string = "";
+
+  receiveMessage($event :any) {
+    console.log($event);
+    this.textValue = $event
+    this.ids.map((id) => {
+      clearTimeout(id);
+    })
+    this.check()
+  }
+
+  highlightTexts = ["forward", "backward", "center"
+  , "turnleft", "turnright", "direction"
+  , "go", "gox", "penup", "pendown", "penwidth"
+  , "pencolor"];
 
   speed : string = "350"
   rapidPageValue : string | undefined = '';
@@ -66,20 +80,20 @@ export class AppComponent implements  AfterViewInit {
   @ViewChild('someInput') someInput!: ElementRef;
 
   ngAfterViewInit() {
-    fromEvent(this.someInput.nativeElement,'keyup')
-            .pipe(
-                map((event : any) => event.target.value),
-                filter(Boolean),
-                debounceTime(1000),
-                distinctUntilChanged(),
-                tap((text) => {
-                  this.ids.map((id) => {
-                    clearTimeout(id);
-                  })
-                  this.check()
-                })
-            )
-            .subscribe();
+    // fromEvent(this.someInput.nativeElement,'keyup')
+    //         .pipe(
+    //             map((event : any) => event.target.value),
+    //             filter(Boolean),
+    //             debounceTime(1000),
+    //             distinctUntilChanged(),
+    //             tap((text) => {
+    //               this.ids.map((id) => {
+    //                 clearTimeout(id);
+    //               })
+    //               this.check()
+    //             })
+    //         )
+    //         .subscribe();
   }
 
   parse_multiple(str: string, obj : input, data : input[]) {
@@ -215,7 +229,7 @@ export class AppComponent implements  AfterViewInit {
     this.LineWidth = 4;
     this.rgb = {R : 10, G : 10, B : 10};
 
-    var cmd = this.someInput.nativeElement.value.split('\n');
+    var cmd = this.textValue.split('\n');
     for (var i = 0; i < cmd.length; i++) {
       let obj: input = {
         command: "",

@@ -2,9 +2,11 @@ import {
     AfterViewInit,
     Component,
     ElementRef,
+    EventEmitter,
     forwardRef,
     Input,
     OnInit,
+    Output,
     ViewChild
   } from "@angular/core";
   import {
@@ -12,6 +14,7 @@ import {
     NG_VALIDATORS,
     NG_VALUE_ACCESSOR
   } from "@angular/forms";
+import { debounceTime, distinctUntilChanged, filter, fromEvent, map, tap } from "rxjs";
   
   @Component({
     selector: "app-textarea-highlight",
@@ -27,15 +30,35 @@ import {
   })
   export class TextareaHighlightComponent
     implements  ControlValueAccessor {
-    constructor() {}
+      
+    constructor() { }
+      
+      
+    @Output() messageEvent = new EventEmitter<string>();
     @Input() highlightTexts: string[] = [];
     @ViewChild("backdrop") backdrop!: ElementRef<HTMLDivElement>;
     @ViewChild("textarea") textarea!: ElementRef<HTMLTextAreaElement>;
     @ViewChild('someInput') someInput!: ElementRef;
 
     ngAfterViewInit() {
-      this.someInput.nativeElement.value = 'Whale!';
-      console.log(this.someInput.nativeElement.value);
+      fromEvent(this.someInput.nativeElement,'keyup')
+      .pipe(
+          map((event : any) => event.target.value),
+          filter(Boolean),
+          debounceTime(1000),
+          distinctUntilChanged(),
+          tap(
+            (text) => {
+            this.sendMessage(text)
+          }
+          )
+      )
+      .subscribe();
+    }
+    
+
+    sendMessage(text :string) {
+      this.messageEvent.emit(text)
     }
     
     textValue: string = "";
