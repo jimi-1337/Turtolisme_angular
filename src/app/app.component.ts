@@ -41,7 +41,12 @@ export class AppComponent implements  AfterViewInit {
     this.ids.map((id) => {
       clearTimeout(id);
     })
-    this.check()
+    if (this.textValue.length == 0) {
+      this.context?.clearRect(0, 0, this.var.width, this.var.height)
+      this.draw_turtle(this.current_x - (50/2), this.current_y - (50 / 2), this.context);
+    }
+    else
+      this.check()
   }
 
   highlightTexts = ["forward", "backward", "center"
@@ -80,20 +85,7 @@ export class AppComponent implements  AfterViewInit {
   @ViewChild('someInput') someInput!: ElementRef;
 
   ngAfterViewInit() {
-    // fromEvent(this.someInput.nativeElement,'keyup')
-    //         .pipe(
-    //             map((event : any) => event.target.value),
-    //             filter(Boolean),
-    //             debounceTime(1000),
-    //             distinctUntilChanged(),
-    //             tap((text) => {
-    //               this.ids.map((id) => {
-    //                 clearTimeout(id);
-    //               })
-    //               this.check()
-    //             })
-    //         )
-    //         .subscribe();
+
   }
 
   parse_multiple(str: string, obj : input, data : input[]) {

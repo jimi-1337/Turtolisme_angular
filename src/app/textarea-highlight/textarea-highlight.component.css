@@ -19,7 +19,7 @@ textarea {
 
 .container {
   display: block;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   transform: translateZ(0);
   -webkit-text-size-adjust: none;
 }

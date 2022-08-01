@@ -1,9 +1,10 @@
 <div class="container">
-    <div #backdrop class="backdrop">
+    <div #backdrop class="backdrop border rounded-2">
       <div class="highlights" [innerHTML]="highlightedText"></div>
     </div>
     <textarea
       #someInput
+      class="border rounded-2"
       [(ngModel)]="textValue"
       (scroll)="handleScroll()"
       cols="25" rows="30"

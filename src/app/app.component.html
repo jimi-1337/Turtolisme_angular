@@ -16,16 +16,16 @@
   <div class="d-flex">
     <div class="border border-secondary bg-editor p-3">
       <div class="d-flex justify-content-between p-0 mb-2">
-        <span>Editor</span>
+        <span class="text_w ps-3">Editor</span>
         <!-- <span class="material-icons">close</span> -->
       </div>
       <!-- <textarea class="p-2 flex-fill" name="text" #someInput cols="25" rows="30"></textarea> -->
       <app-textarea-highlight (messageEvent)="receiveMessage($event)" [highlightTexts]="highlightTexts"></app-textarea-highlight>
 
     </div>
-    <div class="border border-secondary p-5 flex-fill text-center">
-      <div class="d-flex mb-2">
-        <div>Choose Speed of your Turtle : </div>
+    <div class="border border-secondary p-5 flex-fill text-center bg_blue">
+      <div class="d-flex mb-4 justify-content-center">
+        <b><strong>Choose Speed of your Turtle : </strong></b>
         <div class="form-check mx-1">
           <input
             mdbRadio
@@ -99,22 +99,21 @@
           <label class="form-check-label" for="flexRadioDefault2"> 2 </label>
         </div>
       </div>
-      <canvas id="real-turtle" width="1000" height="700"></canvas>
+      <canvas class="border rounded-4 shadow-lg p-3 mb-5 bg-body" id="real-turtle" width="1000" height="700"></canvas>
     </div>
   </div>
 
-  <!-- <button (click)="check()">click</button> -->
   <div *ngIf="Error.length" class="alert alert-danger text-center" role="alert" >{{ Error }}</div>
-  <div class="container-fuild bg-editor">
+  <div class="container-fuild bg_footer m-0">
     <footer class="text-center text-lg-start d-flex justify-content-around">
       <!-- Copyright -->
-      <div class="text-center text-black p-3">
+      <div class="text-center text_w p-3">
         © 2020 Copyright:
-        <a class="text-black" href="https://github.com/jimi-1337/">jimi_1337</a>
+        <a class="text_w" href="https://github.com/jimi-1337/">jimi_1337</a>
       </div>
-      <div class="text-center text-black p-3">
+      <div class="text-center text_w p-3">
         Powered by:
-        <a class="text-black" href="https://github.com/jimi-1337/">jimi_1337</a>
+        <a class="text_w" href="https://github.com/jimi-1337/">jimi_1337</a>
       </div>
       <!-- Copyright -->
     </footer>
